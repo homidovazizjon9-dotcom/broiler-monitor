@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Мониторинг рынка бройлеров</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body{
+      margin:0;
+      padding:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:#f2f4f8;
+      font-size:17px;
+      color:#141414;
+    }
+
+    .container{
+      width:100%;
+      max-width:520px;
+      margin:18px auto;
+      padding:14px;
+    }
+
+    .app-title{
+      text-align:center;
+      font-weight:700;
+      font-size:20px;
+      margin-bottom:12px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 12px 30px rgba(10,20,40,0.06);
+    }
+
+    h3{
+      font-size:18px;
+      margin:0 0 14px 0;
+      color:#0b74d1;
+      font-weight:700;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+
+    .field label{
+      display:block;
+      font-weight:600;
+      font-size:14px;
+      margin-bottom:6px;
+    }
+
+    input, select {
+      width:100%;
+      font-size:16px;
+      padding:12px 14px;
+      min-height:48px;
+      border-radius:12px;
+      border:1px solid #e0e3e7;
+      background:#fff;
+    }
+
+    .action-row { margin-top:18px; }
+
+    button {
+      width:100%;
+      font-size:17px;
+      padding:14px;
+      min-height:52px;
+      border-radius:12px;
+      background:#1976d2;
+      color:#fff;
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="app-title">Мониторинг рынка бройлеров-цыплят 🐥</div>
+
+    <div class="card">
+      <h3>Еженедельные данные</h3>
+
+      <div class="grid">
+
+        <div class="field">
+          <label>Конкурент</label>
+          <select id="competitor" onchange="toggleCustomCompetitor()">
+          <option value="">Выберите конкурента</option>
+          <option>Байзо</option>
+          <option>Далерон</option>
+          <option>Шох Парранда</option>
+          <option>Корвон Парранда</option>
+          <option>Шерали Хакимов</option>
+          <option>Сугд Самарканд Парранда</option>
+          <option>Golden Chicken Bukhara</option>
+          <option>Бахор Пурфайз</option>
+          <option>Мурги Покиза</option>
+          <option>Афросиёб</option>
+          <option>Ихлос</option>
+          <option value="other">Другое</option>
+          </select>
+        </div>
+
+<div class="field" id="customCompetitorBlock" style="display:none;">
+  <label>Укажите конкурента</label>
+  <input id="customCompetitor" type="text" placeholder="Введите название">
+</div>
+
+
+        <div class="field">
+         <label>Возраст</label>
+         <select id="age">
+          <option value="">Выберите возраст</option>
+          <option value="До 1 дня">До 1 дня</option>
+          <option value="Меньше 3 дней">Меньше 3 дней</option>
+          <option value="Меньше 7 дней">Меньше 7 дней</option>
+         </select>
+        </div>
+
+
+        <div class="field">
+         <label>Качество цыплят</label>
+         <select id="quality">
+          <option value="">Выберите качество</option>
+          <option value="Стандарт">Стандарт</option>
+          <option value="Премиум">Премиум</option>
+         </select>
+        </div>
+
+
+        <div class="field">
+          <label>Цена за 1 голову</label>
+          <input id="price" type="number">
+        </div>
+
+        <div class="field">
+          <label>Оптовая цена</label>
+          <input id="bulkPrice" type="number">
+        </div>
+
+        <div class="field">
+          <label>Продажа в долг</label>
+          <select id="credit">
+            <option>Нет</option>
+            <option>Да</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Срок дебиторки (дней)</label>
+          <input id="creditDays" type="number">
+        </div>
+
+        <div class="field">
+          <label>Условия доставки</label>
+          <input id="delivery" type="text">
+        </div>
+
+        <div class="field">
+          <label>Регион продаж</label>
+         <select id="region">
+          <option value="">Выберите регион</option>
+          <option value="Согд">Согд</option>
+          <option value="Душанбе">Душанбе</option>
+          <option value="РРП">РРП</option>
+          <option value="Хатлон">Хатлон</option>
+         </select>
+        </div>
+
+      </div>
+
+      <div class="action-row">
+  <button id="saveBtn" onclick="saveChick()">Сохранить данные</button>
+</div>
+
+<div class="action-row">
+  <a href="list.html" target="_blank">
+    <button class="primary">📋 Посмотреть записи</button>
+  </a>
+</div>
+
+<div class="action-row">
+  <a href="report.html" target="_blank">
+    <button class="primary">📊 Открыть отчёт</button>
+  </a>
+</div>
+
+
+
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

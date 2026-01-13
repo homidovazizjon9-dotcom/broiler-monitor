@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Список записей</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:#f2f4f8;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 16px;
+    }
+
+    h1 {
+      text-align:center;
+      margin-bottom:20px;
+    }
+
+    table {
+      width:100%;
+      border-collapse: collapse;
+      background:#fff;
+      border-radius:12px;
+      overflow:hidden;
+    }
+
+    th, td {
+      padding:12px;
+      border-bottom:1px solid #eee;
+      text-align:left;
+    }
+
+    tr:hover {
+      background:#f1f5ff;
+      cursor:pointer;
+    }
+
+    th {
+      background:#1976d2;
+      color:#fff;
+    }
+
+    /* Навигация */
+    .nav-row {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .nav-btn {
+      width: 100%;
+      max-width: 320px;
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #e5e7eb;
+      color: #111;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover {
+      background: #d1d5db;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Навигация -->
+    <div class="nav-row">
+      <a href="index.html">
+        <button class="nav-btn">⬅ Вернуться к вводу данных</button>
+      </a>
+    </div>
+
+    <h1>📋 Последние записи</h1>
+
+    <table id="recordsTable">
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Конкурент</th>
+          <th>Цена</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+  </div>
+
+  <script src="list.js"></script>
+</body>
+</html>

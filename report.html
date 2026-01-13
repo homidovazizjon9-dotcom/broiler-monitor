@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Отчёт по рынку бройлеров</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: #f2f4f8;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .header {
+      padding: 16px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 20px;
+      background: #1976d2;
+      color: #fff;
+      border-radius: 0 0 16px 16px;
+      margin-bottom: 20px;
+    }
+
+    /* Навигация */
+    .nav-row {
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .nav-btn {
+      width: 100%;
+      max-width: 320px;
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #e5e7eb;
+      color: #111;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover {
+      background: #d1d5db;
+    }
+
+    .iframe-wrapper {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(10,20,40,0.08);
+    }
+
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">📊 Отчёт по рынку бройлеров</div>
+
+  <div class="container">
+
+    <!-- Навигация -->
+    <div class="nav-row">
+      <a href="index.html">
+        <button class="nav-btn">⬅ Вернуться к вводу данных</button>
+      </a>
+    </div>
+
+    <!-- Дашборд -->
+    <div class="iframe-wrapper">
+      <iframe 
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSRWeY7RKPJGF0F8Juw9tOwOLWegjmABqL1n-74Mi62DDrQdtboMPT7cSJd70WQ2GORIfnQIp7oL16Q/pubhtml?gid=897440371&amp;single=true&amp;widget=true&amp;headers=false">
+      </iframe>
+    </div>
+
+  </div>
+
+</body>
+</html>
