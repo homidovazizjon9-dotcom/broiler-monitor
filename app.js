@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxnDAJtMI-PSsaWtUm2QSKoZKuEqRCTXGcYI7ZewtPJCQ-pHlGpdo0QsVV32P2WOdQfsA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxggozSR5PYM7h4ph1eYQafcxhDwJZq8QfQl2rNu7d2LZf65x_KY2jEzYrJEmQb1F1QiQ/exec";
 
 // Функция для показа поля "Другое"
 function toggleCustomCompetitor() {
@@ -12,6 +12,12 @@ function toggleCustomCompetitor() {
   }
 }
 
+// Нормализация чисел (8,5 → 8.5)
+function normalizeNumber(value) {
+  if (!value) return "";
+  return value.replace(",", ".").trim();
+}
+
 // Функция сохранения
 async function saveChick() {
   const btn = document.getElementById("saveBtn");
@@ -21,9 +27,10 @@ async function saveChick() {
     ? document.getElementById("customCompetitor").value.trim()
     : competitorSelect.value;
 
-  const priceValue = document.getElementById("price").value.trim();
+  const priceValue = normalizeNumber(document.getElementById("price").value);
+  const bulkPriceValue = normalizeNumber(document.getElementById("bulkPrice").value);
 
-  // 🔒 ВАЛИДАЦИЯ — защита от пустых записей
+  // 🔒 ВАЛИДАЦИЯ
   if (!competitorValue) {
     alert("Выберите конкурента или укажите вручную");
     return;
@@ -34,12 +41,23 @@ async function saveChick() {
     return;
   }
 
+  // защита от букв, дат и мусора
+  if (isNaN(priceValue)) {
+    alert("Цена должна быть числом. Пример: 8,5");
+    return;
+  }
+
+  if (bulkPriceValue && isNaN(bulkPriceValue)) {
+    alert("Оптовая цена должна быть числом. Пример: 7,5");
+    return;
+  }
+
   const params = new URLSearchParams({
     competitor: competitorValue,
     age: document.getElementById("age").value,
     quality: document.getElementById("quality").value,
     price: priceValue,
-    bulkPrice: document.getElementById("bulkPrice").value,
+    bulkPrice: bulkPriceValue,
     credit: document.getElementById("credit").value,
     creditDays: document.getElementById("creditDays").value,
     delivery: document.getElementById("delivery").value,
@@ -83,5 +101,3 @@ async function saveChick() {
   btn.disabled = false;
   btn.textContent = "Сохранить данные";
 }
-
-
