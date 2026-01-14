@@ -110,5 +110,6 @@ async function loadRecords() {
 }
 
 // Старт
-loadRec
+loadRecords();
+
 
