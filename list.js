@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxnDAJtMI-PSsaWtUm2QSKoZKuEqRCTXGcYI7ZewtPJCQ-pHlGpdo0QsVV32P2WOdQfsA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxggozSR5PYM7h4ph1eYQafcxhDwJZq8QfQl2rNu7d2LZf65x_KY2jEzYrJEmQb1F1QiQ/exec";
 
 let allRecords = []; // все записи в памяти
 
@@ -96,9 +96,16 @@ function showDetails(record) {
 async function loadRecords() {
   try {
     const res = await fetch(API_URL + "?action=getRecords");
-    const data = await res.json();
+    const result = await res.json();
 
-    allRecords = data || [];
+    // если API вернул объект с полем data
+    const data = Array.isArray(result) ? result : result.data;
+
+    if (!Array.isArray(data)) {
+      throw new Error("API вернул не массив");
+    }
+
+    allRecords = data;
 
     renderTable(allRecords);
     fillCompetitors(allRecords);
@@ -109,8 +116,7 @@ async function loadRecords() {
   }
 }
 
+
 // Старт
 loadRecords();
-
-
 
