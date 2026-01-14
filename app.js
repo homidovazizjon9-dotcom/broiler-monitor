@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxggozSR5PYM7h4ph1eYQafcxhDwJZq8QfQl2rNu7d2LZf65x_KY2jEzYrJEmQb1F1QiQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxnDAJtMI-PSsaWtUm2QSKoZKuEqRCTXGcYI7ZewtPJCQ-pHlGpdo0QsVV32P2WOdQfsA/exec";
 
 // Функция для показа поля "Другое"
 function toggleCustomCompetitor() {
@@ -83,3 +83,4 @@ async function saveChick() {
   btn.disabled = false;
   btn.textContent = "Сохранить данные";
 }
+
