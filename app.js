@@ -12,31 +12,33 @@ function toggleCustomCompetitor() {
   }
 }
 
-function toggleReport() {
-  const block = document.getElementById("reportBlock");
-
-  if (block.style.display === "none") {
-    block.style.display = "block";
-  } else {
-    block.style.display = "none";
-  }
-}
-
-
 // Функция сохранения
 async function saveChick() {
   const btn = document.getElementById("saveBtn");
 
   const competitorSelect = document.getElementById("competitor");
   const competitorValue = competitorSelect.value === "other"
-    ? document.getElementById("customCompetitor").value
+    ? document.getElementById("customCompetitor").value.trim()
     : competitorSelect.value;
+
+  const priceValue = document.getElementById("price").value.trim();
+
+  // 🔒 ВАЛИДАЦИЯ — защита от пустых записей
+  if (!competitorValue) {
+    alert("Выберите конкурента или укажите вручную");
+    return;
+  }
+
+  if (!priceValue) {
+    alert("Введите цену");
+    return;
+  }
 
   const params = new URLSearchParams({
     competitor: competitorValue,
     age: document.getElementById("age").value,
     quality: document.getElementById("quality").value,
-    price: document.getElementById("price").value,
+    price: priceValue,
     bulkPrice: document.getElementById("bulkPrice").value,
     credit: document.getElementById("credit").value,
     creditDays: document.getElementById("creditDays").value,
@@ -55,9 +57,20 @@ async function saveChick() {
 
     if (result.status === "ok") {
       alert("Данные сохранены ✅");
+
+      // очистка input
       document.querySelectorAll("input").forEach(i => i.value = "");
-      document.getElementById("customCompetitor").value = "";
-      toggleCustomCompetitor();
+
+      // сброс всех select в первое значение
+      document.querySelectorAll("select").forEach(s => s.selectedIndex = 0);
+
+      // скрыть поле "Другое"
+      const customBlock = document.getElementById("customCompetitorBlock");
+      if (customBlock) customBlock.style.display = "none";
+
+      // прокрутка наверх
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
     } else {
       alert("Ошибка: " + result.message);
     }
