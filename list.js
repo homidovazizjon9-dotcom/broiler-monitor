@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxggozSR5PYM7h4ph1eYQafcxhDwJZq8QfQl2rNu7d2LZf65x_KY2jEzYrJEmQb1F1QiQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxnDAJtMI-PSsaWtUm2QSKoZKuEqRCTXGcYI7ZewtPJCQ-pHlGpdo0QsVV32P2WOdQfsA/exec";
 
 let allRecords = []; // все записи в памяти
 
@@ -95,13 +95,15 @@ function showDetails(record) {
 // Загрузка записей
 async function loadRecords() {
   try {
-    const res = await fetch(API_URL + "?action=getRecords");
-    const result = await res.json();
+    const res = await fetch(API_URL + "?action=getRecords", {
+      cache: "no-store"
+    });
 
-    // если API вернул объект с полем data
-    const data = Array.isArray(result) ? result : result.data;
+    const text = await res.text();
+    const data = JSON.parse(text);
 
     if (!Array.isArray(data)) {
+      console.error("Ответ API:", data);
       throw new Error("API вернул не массив");
     }
 
