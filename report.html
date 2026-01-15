@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <title>Отчёт по рынку бройлеров</title>
 
-  <!-- Фикс масштаба -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- Фикс мобильного масштаба -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
-    /* Изоляция страницы отчёта */
-    body.report-page {
+    body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       background: #f2f4f8;
@@ -43,17 +42,11 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.05);
     }
 
-    .chart-box {
-      position: relative;
-      width: 100%;
-      height: 260px; /* фиксированная высота */
-      max-width: 100%;
-      overflow: hidden;
-    }
-
+    /* Без фиксированной высоты — Chart сам управляет размером */
     canvas {
-      max-width: 100% !important;
-      height: 100% !important;
+      width: 100% !important;
+      max-height: 320px;
+      display: block;
     }
 
     .back-btn {
@@ -70,7 +63,7 @@
   </style>
 </head>
 
-<body class="report-page">
+<body>
 
   <div class="header">📊 Отчёт по рынку бройлеров</div>
 
@@ -82,16 +75,12 @@
 
     <div class="card">
       <h3>Средняя цена по неделям</h3>
-      <div class="chart-box">
-        <canvas id="weekChart"></canvas>
-      </div>
+      <canvas id="weekChart"></canvas>
     </div>
 
     <div class="card">
       <h3>Средняя цена по конкурентам</h3>
-      <div class="chart-box">
-        <canvas id="competitorChart"></canvas>
-      </div>
+      <canvas id="competitorChart"></canvas>
     </div>
 
   </div>
