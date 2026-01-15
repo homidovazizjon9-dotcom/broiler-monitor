@@ -3,7 +3,8 @@ const API_URL = "https://script.google.com/macros/s/AKfycbxnDAJtMI-PSsaWtUm2QSKo
 let weekChartInstance = null;
 let competitorChartInstance = null;
 
-// Загрузка данных
+
+// ===== Загрузка данных =====
 async function loadData() {
   try {
     const res = await fetch(API_URL + "?action=getRecords", {
@@ -57,7 +58,7 @@ function buildWeekChart(data) {
   const ctx = document.getElementById("weekChart");
   if (!ctx) return;
 
-  // 💣 Уничтожаем старый график
+  // Убиваем старый график
   if (weekChartInstance) {
     weekChartInstance.destroy();
   }
@@ -67,23 +68,30 @@ function buildWeekChart(data) {
     data: {
       labels,
       datasets: [{
+        label: "Средняя цена",
         data: values,
-        backgroundColor: "#1976d2"
+        backgroundColor: "#1976d2",
+        borderRadius: 8
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: false,
       plugins: {
         legend: { display: false }
       },
       scales: {
-        y: { beginAtZero: true }
+        x: {
+          ticks: { autoSkip: false }
+        },
+        y: {
+          beginAtZero: true
+        }
       }
     }
   });
 }
-
 
 
 // ===== График по конкурентам =====
@@ -106,7 +114,7 @@ function buildCompetitorChart(data) {
   const ctx = document.getElementById("competitorChart");
   if (!ctx) return;
 
-  // 💣 Уничтожаем старый график
+  // Убиваем старый график
   if (competitorChartInstance) {
     competitorChartInstance.destroy();
   }
@@ -116,18 +124,26 @@ function buildCompetitorChart(data) {
     data: {
       labels,
       datasets: [{
+        label: "Средняя цена",
         data: values,
-        backgroundColor: "#43a047"
+        backgroundColor: "#43a047",
+        borderRadius: 8
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: false,
       plugins: {
         legend: { display: false }
       },
       scales: {
-        y: { beginAtZero: true }
+        x: {
+          ticks: { autoSkip: false }
+        },
+        y: {
+          beginAtZero: true
+        }
       }
     }
   });
@@ -142,7 +158,5 @@ function getWeekNumber(date) {
 }
 
 
-// Старт
-loadData();
-
-
+// ===== Старт =====
+document.addEventListener("DOMContentLoaded", loadData);
