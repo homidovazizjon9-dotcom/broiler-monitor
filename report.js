@@ -1,5 +1,8 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxnDAJtMI-PSsaWtUm2QSKoZKuEqRCTXGcYI7ZewtPJCQ-pHlGpdo0QsVV32P2WOdQfsA/exec";
 
+let weekChartInstance = null;
+let competitorChartInstance = null;
+
 // Загрузка данных
 async function loadData() {
   try {
@@ -39,7 +42,6 @@ function buildWeekChart(data) {
     const d = new Date(r.date);
     if (isNaN(d)) return;
 
-    // формат: 2026-03
     const week = `${d.getFullYear()}-${String(getWeekNumber(d)).padStart(2, "0")}`;
 
     if (!map[week]) map[week] = [];
@@ -53,15 +55,18 @@ function buildWeekChart(data) {
   });
 
   const ctx = document.getElementById("weekChart");
-
   if (!ctx) return;
 
-  new Chart(ctx, {
+  // 💣 Уничтожаем старый график
+  if (weekChartInstance) {
+    weekChartInstance.destroy();
+  }
+
+  weekChartInstance = new Chart(ctx, {
     type: "bar",
     data: {
       labels,
       datasets: [{
-        label: "Средняя цена",
         data: values,
         backgroundColor: "#1976d2"
       }]
@@ -71,10 +76,14 @@ function buildWeekChart(data) {
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false }
+      },
+      scales: {
+        y: { beginAtZero: true }
       }
     }
   });
 }
+
 
 
 // ===== График по конкурентам =====
@@ -95,15 +104,18 @@ function buildCompetitorChart(data) {
   });
 
   const ctx = document.getElementById("competitorChart");
-
   if (!ctx) return;
 
-  new Chart(ctx, {
+  // 💣 Уничтожаем старый график
+  if (competitorChartInstance) {
+    competitorChartInstance.destroy();
+  }
+
+  competitorChartInstance = new Chart(ctx, {
     type: "bar",
     data: {
       labels,
       datasets: [{
-        label: "Средняя цена",
         data: values,
         backgroundColor: "#43a047"
       }]
@@ -113,6 +125,9 @@ function buildCompetitorChart(data) {
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false }
+      },
+      scales: {
+        y: { beginAtZero: true }
       }
     }
   });
@@ -129,4 +144,5 @@ function getWeekNumber(date) {
 
 // Старт
 loadData();
+
 
