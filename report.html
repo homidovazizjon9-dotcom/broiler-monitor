@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Отчёт по рынку бройлеров</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Фикс масштаба -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
-    body {
-      margin:0;
+    /* Изоляция страницы отчёта */
+    body.report-page {
+      margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background:#f2f4f8;
+      background: #f2f4f8;
+      max-width: 100vw;
+      overflow-x: hidden;
     }
 
     .header {
-      background:#1976d2;
-      color:#fff;
-      padding:16px;
-      text-align:center;
-      font-weight:700;
-      font-size:18px;
+      background: #1976d2;
+      color: #fff;
+      padding: 16px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 18px;
     }
 
     .container {
@@ -29,25 +35,26 @@
       padding: 16px;
     }
 
-   .card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-}
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
 
-.chart-box {
-  position: relative;
-  width: 100%;
-  height: 260px;   /* ← фиксированная высота */
-}
+    .chart-box {
+      position: relative;
+      width: 100%;
+      height: 260px; /* фиксированная высота */
+      max-width: 100%;
+      overflow: hidden;
+    }
 
-canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
+    canvas {
+      max-width: 100% !important;
+      height: 100% !important;
+    }
 
     .back-btn {
       margin: 12px auto;
@@ -58,34 +65,37 @@ canvas {
       background: #e5e7eb;
       font-weight: 600;
       width: 100%;
+      cursor: pointer;
     }
   </style>
 </head>
 
-<body>
+<body class="report-page">
 
-<div class="header">📊 Отчёт по рынку бройлеров</div>
+  <div class="header">📊 Отчёт по рынку бройлеров</div>
 
-<div class="container">
+  <div class="container">
 
-  <a href="index.html">
-    <button class="back-btn">⬅ Вернуться к вводу данных</button>
-  </a>
-<div class="card">
-  <h3>Средняя цена по неделям</h3>
-  <div class="chart-box">
-    <canvas id="weekChart"></canvas>
+    <a href="index.html">
+      <button class="back-btn">⬅ Вернуться к вводу данных</button>
+    </a>
+
+    <div class="card">
+      <h3>Средняя цена по неделям</h3>
+      <div class="chart-box">
+        <canvas id="weekChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Средняя цена по конкурентам</h3>
+      <div class="chart-box">
+        <canvas id="competitorChart"></canvas>
+      </div>
+    </div>
+
   </div>
-</div>
 
-<div class="card">
-  <h3>Средняя цена по конкурентам</h3>
-  <div class="chart-box">
-    <canvas id="competitorChart"></canvas>
-  </div>
-</div>
-
-<script src="report.js"></script>
+  <script src="report.js"></script>
 </body>
 </html>
-
