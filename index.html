@@ -16,13 +16,25 @@
       font-size:17px;
       color:#141414;
     }
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 16px;
+}
 
-    .container{
-      width:100%;
-      max-width:520px;
-      margin:18px auto;
-      padding:14px;
-    }
+@media (min-width: 768px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
 
     .app-title{
       text-align:center;
@@ -208,3 +220,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+
