@@ -29,23 +29,25 @@
       padding: 16px;
     }
 
-    .card {
-      background:#fff;
-      border-radius:16px;
-      padding:16px;
-      margin-bottom:20px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.05);
-    }
+   .card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
 
-    h2 {
-      font-size:16px;
-      margin-bottom:12px;
-    }
+.chart-box {
+  position: relative;
+  width: 100%;
+  height: 260px;   /* ← фиксированная высота */
+}
 
-    canvas {
-      width:100% !important;
-      height:auto !important;
-    }
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 
     .back-btn {
       margin: 12px auto;
@@ -69,19 +71,21 @@
   <a href="index.html">
     <button class="back-btn">⬅ Вернуться к вводу данных</button>
   </a>
-
-  <div class="card">
-    <h2>Средняя цена по неделям</h2>
+<div class="card">
+  <h3>Средняя цена по неделям</h3>
+  <div class="chart-box">
     <canvas id="weekChart"></canvas>
   </div>
+</div>
 
-  <div class="card">
-    <h2>Средняя цена по конкурентам</h2>
+<div class="card">
+  <h3>Средняя цена по конкурентам</h3>
+  <div class="chart-box">
     <canvas id="competitorChart"></canvas>
   </div>
-
 </div>
 
 <script src="report.js"></script>
 </body>
 </html>
+
