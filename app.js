@@ -12,12 +12,6 @@ function toggleCustomCompetitor() {
   }
 }
 
-// Нормализация чисел (8,5 → 8.5)
-function normalizeNumber(value) {
-  if (!value) return "";
-  return value.replace(",", ".").trim();
-}
-
 // Функция сохранения
 async function saveChick() {
   const btn = document.getElementById("saveBtn");
@@ -27,8 +21,8 @@ async function saveChick() {
     ? document.getElementById("customCompetitor").value.trim()
     : competitorSelect.value;
 
-  const priceValue = normalizeNumber(document.getElementById("price").value);
-  const bulkPriceValue = normalizeNumber(document.getElementById("bulkPrice").value);
+  const priceValue = document.getElementById("price").value.trim();
+  const bulkPriceValue = document.getElementById("bulkPrice").value.trim();
 
   // 🔒 ВАЛИДАЦИЯ
   if (!competitorValue) {
@@ -41,13 +35,13 @@ async function saveChick() {
     return;
   }
 
-  // защита от букв, дат и мусора
-  if (isNaN(priceValue)) {
+  // защита от букв и мусора
+  if (isNaN(priceValue.replace(",", "."))) {
     alert("Цена должна быть числом. Пример: 8,5");
     return;
   }
 
-  if (bulkPriceValue && isNaN(bulkPriceValue)) {
+  if (bulkPriceValue && isNaN(bulkPriceValue.replace(",", "."))) {
     alert("Оптовая цена должна быть числом. Пример: 7,5");
     return;
   }
@@ -56,8 +50,8 @@ async function saveChick() {
     competitor: competitorValue,
     age: document.getElementById("age").value,
     quality: document.getElementById("quality").value,
-    price: priceValue,
-    bulkPrice: bulkPriceValue,
+    price: priceValue,          // отправляем как есть: 8,5
+    bulkPrice: bulkPriceValue,  // отправляем как есть: 7,5
     credit: document.getElementById("credit").value,
     creditDays: document.getElementById("creditDays").value,
     delivery: document.getElementById("delivery").value,
