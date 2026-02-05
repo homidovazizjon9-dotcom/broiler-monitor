@@ -10,12 +10,13 @@
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       background:#f2f4f8;
+      font-size: 16px;
     }
 
     .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 16px;
+      max-width: 960px;
+      margin: 24px auto;
+      padding: 18px;
     }
 
     h1 {
@@ -102,6 +103,37 @@
     th {
       background:#1976d2;
       color:#fff;
+    }
+
+    @media (min-width: 1200px) {
+      body {
+        font-size: 18px;
+      }
+
+      .container {
+        max-width: 1200px;
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .nav-btn {
+        font-size: 18px;
+        max-width: 360px;
+        padding: 14px;
+      }
+
+      .filters select,
+      .filters input {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      th, td {
+        padding: 16px;
+      }
     }
   </style>
 </head>
